@@ -1,4 +1,6 @@
-#!/usr/bin/perl -I/home/tbrannon/prg/perl-module-cgi-prototype/lib
+#!/usr/bin/perl
+
+use lib qw(/home/tbrannon/prg/perl-module-cgi-prototype/lib /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple);
 
 BEGIN 
 {

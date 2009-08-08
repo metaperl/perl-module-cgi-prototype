@@ -16,11 +16,24 @@ has 'engine_config' => (is => 'rw', default => sub { {} }) ;
 has 'template' => (is => 'rw', lazy_build => 1);
 
 
+sub _build_request {
+    require Mojo::Message::Request;
+    Mojo::Message::Request->new
+}
+
+sub _build_response {
+    require Mojo::Message::Response;
+    my $res = Mojo::Message::Response->new;
+
+    $res->code(200);
+    $res->headers->content_type('text/html');
+    $res;
+}
 
 sub _build_CGI {
     my($self)=@_;
 
-    use CGI::Simple;
+    require CGI::Simple;
     CGI::Simple->new;
 }
 
@@ -35,19 +48,6 @@ sub _build_engine {
 
 sub _build_template {
   \ '[% self.CGI.header %]This page intentionally left blank.';
-}
-
-sub _build_request {
-    require Mojo::Message::Request;
-    Mojo::Message::Request->new
-}
-
-sub _build_response {
-    require Mojo::Message::Response;
-    my $res = Mojo::Message::Response->new;
-
-    $res->code(200);
-    $res->headers->content_type('text/html');
 }
 
 
@@ -103,7 +103,7 @@ sub prototype_enter { }
 sub prototype_leave { 
     my($self)=@_;
 
-    $self->response->to_string;
+    print $self->response->to_string;
 }
 
 sub app_enter {}
