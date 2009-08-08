@@ -35,3 +35,201 @@
 [Sat Aug 08 04:08:50 2009] [error] [client 75.187.105.186] Compilation failed in require at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/webapp.cgi line 3.
 [Sat Aug 08 04:08:50 2009] [error] [client 75.187.105.186] BEGIN failed--compilation aborted at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/webapp.cgi line 3.
 [Sat Aug 08 04:08:50 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
+[Sat Aug 08 04:15:40 2009] [error] [client 75.187.105.186] Base class package "CGI::Prototype::Moose" is empty.
+[Sat Aug 08 04:15:40 2009] [error] [client 75.187.105.186]     (Perhaps you need to 'use' the module which defines that package first.)
+[Sat Aug 08 04:15:40 2009] [error] [client 75.187.105.186]  at WebApp.pm line 3
+[Sat Aug 08 04:15:40 2009] [error] [client 75.187.105.186] BEGIN failed--compilation aborted at WebApp.pm line 3.
+[Sat Aug 08 04:15:40 2009] [error] [client 75.187.105.186] Compilation failed in require at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/webapp.cgi line 4.
+[Sat Aug 08 04:15:40 2009] [error] [client 75.187.105.186] BEGIN failed--compilation aborted at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/webapp.cgi line 4.
+[Sat Aug 08 04:15:40 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
+[Sat Aug 08 04:18:38 2009] [warn] pid file /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Sat Aug 08 04:18:38 2009] [notice] Apache/2.2.3 (Red Hat) configured -- resuming normal operations
+[Sat Aug 08 04:19:59 2009] [error] [client 75.187.105.186] Can't locate Data/Duper.pm in @INC (@INC contains: /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple /usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi /usr/lib/perl5/site_perl/5.8.7/i386-linux-thread-multi /usr/lib/perl5/site_perl/5.8.6/i386-linux-thread-multi /usr/lib/perl5/site_perl/5.8.5/i386-linux-thread-multi /usr/lib/perl5/site_perl/5.8.8 /usr/lib/perl5/site_perl/5.8.7 /usr/lib/perl5/site_perl/5.8.6 /usr/lib/perl5/site_perl/5.8.5 /usr/lib/perl5/site_perl /usr/lib/perl5/vendor_perl/5.8.8/i386-linux-thread-multi /usr/lib/perl5/vendor_perl/5.8.7/i386-linux-thread-multi /usr/lib/perl5/vendor_perl/5.8.6/i386-linux-thread-multi /usr/lib/perl5/vendor_perl/5.8.5/i386-linux-thread-multi /usr/lib/perl5/vendor_perl/5.8.8 /usr/lib/perl5/vendor_perl/5.8.7 /usr/lib/perl5/vendor_perl/5.8.6 /usr/lib/perl5/vendor_perl/5.8.5 /usr/lib/perl5/vendor_perl /usr/lib/perl5/5.8.8/i386-linux-thread-multi /usr/lib/perl5/5.8.8 . /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple) at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/webapp.cgi line 5.
+[Sat Aug 08 04:19:59 2009] [error] [client 75.187.105.186] BEGIN failed--compilation aborted at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/webapp.cgi line 5.
+[Sat Aug 08 04:19:59 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186] $VAR1 = [
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/home/tbrannon/prg/perl-module-cgi-prototype/etc/simple',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.7/i386-linux-thread-multi',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.6/i386-linux-thread-multi',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.5/i386-linux-thread-multi',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.8',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.7',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.6',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.5',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.7/i386-linux-thread-multi',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.6/i386-linux-thread-multi',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.5/i386-linux-thread-multi',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.8',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.7',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.6',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.5',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/5.8.8',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '.',
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]           '/home/tbrannon/prg/perl-module-cgi-prototype/etc/simple'
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]         ];
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186] Base class package "CGI::Prototype::Moose" is empty.
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]     (Perhaps you need to 'use' the module which defines that package first.)
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186]  at WebApp.pm line 3
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186] BEGIN failed--compilation aborted at WebApp.pm line 3.
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186] Compilation failed in require at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/webapp.cgi line 9.
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186] BEGIN failed--compilation aborted at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/webapp.cgi line 9.
+[Sat Aug 08 04:20:17 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186] $VAR1 = [
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/home/tbrannon/prg/perl-module-cgi-prototype/lib',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.7/i386-linux-thread-multi',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.6/i386-linux-thread-multi',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.5/i386-linux-thread-multi',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.8',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.7',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.6',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.5',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.7/i386-linux-thread-multi',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.6/i386-linux-thread-multi',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.5/i386-linux-thread-multi',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.8',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.7',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.6',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.5',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/5.8.8',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '.',
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]           '/home/tbrannon/prg/perl-module-cgi-prototype/lib'
+[Sat Aug 08 04:21:13 2009] [error] [client 75.187.105.186]         ];
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186] $VAR1 = [
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/home/tbrannon/prg/perl-module-cgi-prototype/lib',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.7/i386-linux-thread-multi',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.6/i386-linux-thread-multi',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.5/i386-linux-thread-multi',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.8',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.7',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.6',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.5',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.7/i386-linux-thread-multi',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.6/i386-linux-thread-multi',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.5/i386-linux-thread-multi',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.8',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.7',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.6',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.5',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/5.8.8',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '.',
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]           '/home/tbrannon/prg/perl-module-cgi-prototype/lib'
+[Sat Aug 08 04:24:07 2009] [error] [client 75.187.105.186]         ];
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186] $VAR1 = [
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/home/tbrannon/prg/perl-module-cgi-prototype/lib',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.7/i386-linux-thread-multi',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.6/i386-linux-thread-multi',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.5/i386-linux-thread-multi',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.8',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.7',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.6',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.5',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.7/i386-linux-thread-multi',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.6/i386-linux-thread-multi',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.5/i386-linux-thread-multi',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.8',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.7',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.6',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.5',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/5.8.8',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '.',
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]           '/home/tbrannon/prg/perl-module-cgi-prototype/lib'
+[Sat Aug 08 04:25:06 2009] [error] [client 75.187.105.186]         ];
+[Sat Aug 08 04:25:07 2009] [error] [client 75.187.105.186] Can't use string ("WebApp") as a HASH ref while "strict refs" in use at accessor engine defined at /home/tbrannon/prg/perl-module-cgi-prototype/lib/CGI/Prototype/Moose.pm line 20.
+[Sat Aug 08 04:25:07 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186] $VAR1 = [
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/home/tbrannon/prg/perl-module-cgi-prototype/lib',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.7/i386-linux-thread-multi',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.6/i386-linux-thread-multi',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.5/i386-linux-thread-multi',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.8',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.7',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.6',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.5',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.7/i386-linux-thread-multi',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.6/i386-linux-thread-multi',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.5/i386-linux-thread-multi',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.8',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.7',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.6',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.5',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/5.8.8',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '.',
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]           '/home/tbrannon/prg/perl-module-cgi-prototype/lib'
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186]         ];
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186] Can't use string ("WebApp") as a HASH ref while "strict refs" in use at accessor engine defined at /home/tbrannon/prg/perl-module-cgi-prototype/lib/CGI/Prototype/Moose.pm line 20.
+[Sat Aug 08 04:25:32 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186] $VAR1 = [
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/home/tbrannon/prg/perl-module-cgi-prototype/lib',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.7/i386-linux-thread-multi',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.6/i386-linux-thread-multi',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.5/i386-linux-thread-multi',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.8',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.7',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.6',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.5',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.7/i386-linux-thread-multi',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.6/i386-linux-thread-multi',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.5/i386-linux-thread-multi',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.8',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.7',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.6',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.5',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/5.8.8',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '.',
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]           '/home/tbrannon/prg/perl-module-cgi-prototype/lib'
+[Sat Aug 08 04:28:48 2009] [error] [client 75.187.105.186]         ];
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186] $VAR1 = [
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/home/tbrannon/prg/perl-module-cgi-prototype/lib',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.7/i386-linux-thread-multi',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.6/i386-linux-thread-multi',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.5/i386-linux-thread-multi',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.8',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.7',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.6',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl/5.8.5',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/site_perl',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.7/i386-linux-thread-multi',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.6/i386-linux-thread-multi',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.5/i386-linux-thread-multi',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.8',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.7',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.6',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl/5.8.5',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/vendor_perl',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/5.8.8/i386-linux-thread-multi',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/usr/lib/perl5/5.8.8',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '.',
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]           '/home/tbrannon/prg/perl-module-cgi-prototype/lib'
+[Sat Aug 08 04:29:56 2009] [error] [client 75.187.105.186]         ];

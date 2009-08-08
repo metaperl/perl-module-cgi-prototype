@@ -12,6 +12,10 @@ has 'engine_config' => (is => 'rw', default => sub { {} }) ;
 
 has 'template' => (is => 'rw', lazy_build => 1);
 
+$ENV{Debug} = 1;
+use CGI::Carp::DebugScreen ( debug => 1 );
+
+
 sub _build_CGI {
     my($self)=@_;
 
