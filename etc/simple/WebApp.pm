@@ -1,7 +1,7 @@
 package WebApp;
+use strict; use warnings;
 
 use base qw/CGI::Prototype::Moose/ ;
-
 
 sub template { \ <<'END_OF_TEMPLATE' }
 
