@@ -1,6 +1,6 @@
 package WebApp;
 
-use base CGI::Prototype::Moose;
+use base qw/CGI::Prototype::Moose/ ;
 
 
 sub template { \ <<'END_OF_TEMPLATE' }

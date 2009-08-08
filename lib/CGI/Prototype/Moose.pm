@@ -6,14 +6,15 @@ use warnings;
 
 use Moose;
 
+has 'request'  => (is => 'ro', lazy_build => 1);
+has 'response' => (is => 'ro', lazy_build => 1);
+
 has 'CGI'    => (is => 'rw', lazy_build => 1);
 has 'engine' => (is => 'rw', lazy_build => 1);
 has 'engine_config' => (is => 'rw', default => sub { {} }) ;
 
 has 'template' => (is => 'rw', lazy_build => 1);
 
-$ENV{Debug} = 1;
-use CGI::Carp::DebugScreen ( debug => 1 );
 
 
 sub _build_CGI {
@@ -35,6 +36,20 @@ sub _build_engine {
 sub _build_template {
   \ '[% self.CGI.header %]This page intentionally left blank.';
 }
+
+sub _build_request {
+    require Mojo::Message::Request;
+    Mojo::Message::Request->new
+}
+
+sub _build_response {
+    require Mojo::Message::Response;
+    my $res = Mojo::Message::Response->new;
+
+    $res->code(200);
+    $res->headers->content_type('text/html');
+}
+
 
 
 sub activate {
@@ -74,7 +89,7 @@ sub render {
 
   $tt->process($self->template, { self => $self }, \my $output)
     or die $tt->error;	# passes Template::Exception upward
-  $self->display($output);
+  $self->response->body($output);
 }
 
 
@@ -85,7 +100,11 @@ sub param {
 
 sub prototype_enter { }
 
-sub prototype_leave { }
+sub prototype_leave { 
+    my($self)=@_;
+
+    $self->response->to_string;
+}
 
 sub app_enter {}
 

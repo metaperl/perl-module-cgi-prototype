@@ -9,7 +9,8 @@ WriteMakefile(
 			  'Class::Prototyped' => 0,
 
 			  Moose => 0,
-			  CGI::Simple => 0
+			  CGI::Simple => 0,
+			  Mojo => 0
 			 },
     ($] >= 5.005 ?
       (ABSTRACT_FROM  => 'lib/CGI/Prototype.pm',
