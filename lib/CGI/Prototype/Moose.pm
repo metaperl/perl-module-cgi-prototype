@@ -23,11 +23,13 @@ sub _build_request {
 
 sub _build_response {
     require Mojo::Message::Response;
-    my $res = Mojo::Message::Response->new;
 
-    $res->code(200);
-    $res->headers->content_type('text/html');
-    $res;
+    my $respone = Mojo::Message::Response->new;
+
+    $response->code(200);
+    $response->headers->content_type('text/html');
+
+    $response;
 }
 
 sub _build_CGI {
@@ -76,12 +78,17 @@ sub activate {
   $self->error($@) if $@;	# failed something, go to safe mode
 }
 
-sub display {			# override this to grab output for testing
-  my $self = shift;
-  my $output = shift;
-  print $output;
-}
+# sub display {			# override this to grab output for testing
+#   my $self = shift;
+#   my $output = shift;
+#   print $output;
+# }
 
+sub redirect {
+    my($self, $url)=@_;
+
+    $self->response->code(302)->headers->location($url);
+}
 
 sub render {
   my $self = shift;
@@ -103,7 +110,16 @@ sub prototype_enter { }
 sub prototype_leave { 
     my($self)=@_;
 
-    print $self->response->to_string;
+    my $message = '';
+
+    # Headers
+    $message .= $self->response->build_headers;
+
+    # Body
+    $message .= $self->response->build_body;
+
+    print $message;
+
 }
 
 sub app_enter {}

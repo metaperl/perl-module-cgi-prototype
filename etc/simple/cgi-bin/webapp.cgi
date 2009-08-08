@@ -4,8 +4,8 @@ use lib qw(/home/tbrannon/prg/perl-module-cgi-prototype/lib /home/tbrannon/prg/p
 
 BEGIN 
 {
-    use Data::Dumper;
-    warn Dumper \@INC;
+#     use Data::Dumper;
+#     warn Dumper \@INC;
 }	
 
 use WebApp;
