@@ -8,7 +8,7 @@ use base qw(Class::Prototyped);
 
 ## no exports
 
-our $VERSION = '0.9053';
+our $VERSION = '0.9054';
 
 our $_mirror = __PACKAGE__->reflect; # for slots that aren't subs
 
@@ -578,12 +578,24 @@ sub respond {
 L<Class::Prototyped>, L<Template::Manual>,
 L<http://www.stonehenge.com/merlyn/LinuxMag/col56.html>.
 
-=head1 BUG REPORTS
+=head1 SUPPORT, MAILING LIST, SOURCE REPO
 
-Please report any bugs or feature requests to
-bug-cgi-prototype@rt.cpan.org, or through the web interface at
-http://rt.cpan.org. I will be notified, and then you'll automatically
-be notified of progress on your bug as I make changes.
+The mailing list for CGI::Prototype is archived at
+L<http://www.mail-archive.com/cgi-prototype-users@lists.sourceforge.net/index.html>
+
+You may sign up here
+L<https://lists.sourceforge.net/lists/listinfo/cgi-prototype-users>
+
+for general discussion or bug reports.
+
+=head2 Source repo
+
+Randal Schwartz maintains the source repo on github:
+http://github.com/RandalSchwartz/perl-module-cgi-prototype/tree/master
+
+Terrence Brannon has the moose-active fork of the repo at:
+L<http://github.com/metaperl/perl-module-cgi-prototype/tree/master>
+
 
 =head1 AUTHOR
 

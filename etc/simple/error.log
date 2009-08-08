@@ -1,0 +1,37 @@
+2009-08-07 19:56:13: (log.c.97) server started 
+2009-08-07 19:56:13: (server.c.925) WARNING: unknown config-key: server.accesslog (ignored) 
+2009-08-07 19:58:06: (server.c.1355) [note] graceful shutdown started 
+2009-08-07 19:58:06: (server.c.1469) server stopped by UID = 505 PID = 19409 
+2009-08-07 19:58:07: (log.c.97) server started 
+2009-08-07 19:58:07: (server.c.925) WARNING: unknown config-key: accesslog.filename (ignored) 
+2009-08-07 19:58:10: (log.c.97) server started 
+2009-08-07 19:58:10: (server.c.925) WARNING: unknown config-key: accesslog.filename (ignored) 
+2009-08-07 20:03:42: (server.c.1355) [note] graceful shutdown started 
+2009-08-07 20:03:42: (server.c.1469) server stopped by UID = 505 PID = 19409 
+2009-08-07 20:03:45: (log.c.97) server started 
+2009-08-07 20:14:47: (server.c.1355) [note] graceful shutdown started 
+2009-08-07 20:14:47: (server.c.1469) server stopped by UID = 505 PID = 19409 
+2009-08-07 20:17:29: (log.c.97) server started 
+2009-08-08 03:30:00: (server.c.1355) [note] graceful shutdown started 
+2009-08-08 03:30:00: (server.c.1469) server stopped by UID = 505 PID = 19409 
+[Sat Aug 08 03:51:12 2009] [error] (13)Permission denied: could not create /etc/httpd/logs/httpd.pid
+[Sat Aug 08 03:51:12 2009] [error] httpd: could not log pid to file /etc/httpd/logs/httpd.pid
+[Sat Aug 08 03:56:06 2009] [error] (13)Permission denied: could not create /etc/httpd/logs/httpd.pid
+[Sat Aug 08 03:56:06 2009] [error] httpd: could not log pid to file /etc/httpd/logs/httpd.pid
+[Sat Aug 08 03:58:30 2009] [notice] Apache/2.2.3 (Red Hat) configured -- resuming normal operations
+[Sat Aug 08 03:58:34 2009] [error] [client 75.187.105.186] (8)Exec format error: exec of '/home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/webapp.cgi' failed
+[Sat Aug 08 03:58:34 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
+[Sat Aug 08 03:59:22 2009] [error] [client 75.187.105.186] File does not exist: /etc/httpd/htdocs
+[Sat Aug 08 03:59:28 2009] [error] [client 75.187.105.186] (13)Permission denied: exec of '/home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/hello.cgi' failed
+[Sat Aug 08 03:59:28 2009] [error] [client 75.187.105.186] Premature end of script headers: hello.cgi
+[Sat Aug 08 03:59:46 2009] [error] [client 75.187.105.186] (8)Exec format error: exec of '/home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/hello.cgi' failed
+[Sat Aug 08 03:59:46 2009] [error] [client 75.187.105.186] Premature end of script headers: hello.cgi
+[Sat Aug 08 04:08:36 2009] [warn] pid file /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Sat Aug 08 04:08:36 2009] [notice] Apache/2.2.3 (Red Hat) configured -- resuming normal operations
+[Sat Aug 08 04:08:50 2009] [error] [client 75.187.105.186] Base class package "CGI::Prototype::Moose" is empty.
+[Sat Aug 08 04:08:50 2009] [error] [client 75.187.105.186]     (Perhaps you need to 'use' the module which defines that package first.)
+[Sat Aug 08 04:08:50 2009] [error] [client 75.187.105.186]  at WebApp.pm line 3
+[Sat Aug 08 04:08:50 2009] [error] [client 75.187.105.186] BEGIN failed--compilation aborted at WebApp.pm line 3.
+[Sat Aug 08 04:08:50 2009] [error] [client 75.187.105.186] Compilation failed in require at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/webapp.cgi line 3.
+[Sat Aug 08 04:08:50 2009] [error] [client 75.187.105.186] BEGIN failed--compilation aborted at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/webapp.cgi line 3.
+[Sat Aug 08 04:08:50 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
