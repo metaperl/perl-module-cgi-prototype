@@ -832,3 +832,7 @@
 [Sat Aug 08 06:18:17 2009] [error] [client 75.187.105.186] Compilation failed in require at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/webapp.cgi line 11.
 [Sat Aug 08 06:18:17 2009] [error] [client 75.187.105.186] BEGIN failed--compilation aborted at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/webapp.cgi line 11.
 [Sat Aug 08 06:18:17 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
+[Sat Aug 08 11:14:00 2009] [error] [client 75.187.105.186] "my" variable $self masks earlier declaration in same scope at /home/tbrannon/prg/perl-module-cgi-prototype/lib/CGI/Prototype/Moose.pm line 122.
+[Sat Aug 08 11:14:00 2009] [error] [client 75.187.105.186] Can't locate object method "display" via package "WebApp" at /home/tbrannon/prg/perl-module-cgi-prototype/lib/CGI/Prototype/Moose.pm line 169.
+[Sat Aug 08 11:14:00 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
+[Sat Aug 08 11:14:48 2009] [error] [client 75.187.105.186] Sat Aug  8 11:14:48 2009 debug CGI::Prototype::Moose:131 [22855]: === Request took 0.159674 seconds (6.263/s) ===

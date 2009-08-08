@@ -10,7 +10,8 @@ WriteMakefile(
 
 			  Moose => 0,
 			  CGI::Simple => 0,
-			  Mojo => 0
+			  Mojo => 0,
+			  Time::HiRes => 0
 			 },
     ($] >= 5.005 ?
       (ABSTRACT_FROM  => 'lib/CGI/Prototype.pm',

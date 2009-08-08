@@ -1,19 +1,20 @@
 package CGI::Prototype::Moose;
 
-use 5.006;
-use strict;
-use warnings;
-
 use Moose;
 
 has 'request'  => (is => 'ro', lazy_build => 1);
 has 'response' => (is => 'ro', lazy_build => 1);
+has 'log'      => (is => 'rw', lazy_build => 1);
 
+has 'output'   => (is => 'rw');
 has 'CGI'    => (is => 'rw', lazy_build => 1);
 has 'engine' => (is => 'rw', lazy_build => 1);
-has 'engine_config' => (is => 'rw', default => sub { {} }) ;
+has 'engine_config' => (is => 'rw', lazy_build => 1);
 
 has 'template' => (is => 'rw', lazy_build => 1);
+
+has 'session_start_time' => (is => 'rw');
+
 
 
 sub _build_request {
@@ -24,12 +25,19 @@ sub _build_request {
 sub _build_response {
     require Mojo::Message::Response;
 
-    my $respone = Mojo::Message::Response->new;
+    my $response = Mojo::Message::Response->new;
 
     $response->code(200);
     $response->headers->content_type('text/html');
 
     $response;
+}
+
+sub _build_log {
+    require Mojo::Log;
+
+    my $log = Mojo::Log->new;
+    $log;
 }
 
 sub _build_CGI {
@@ -48,8 +56,10 @@ sub _build_engine {
 
 }
 
+sub _build_engine_config { {} }
+
 sub _build_template {
-  \ '[% self.CGI.header %]This page intentionally left blank.';
+   'This page intentionally left blank.';
 }
 
 
@@ -95,8 +105,8 @@ sub render {
   my $tt = $self->engine;
 
   $tt->process($self->template, { self => $self }, \my $output)
-    or die $tt->error;	# passes Template::Exception upward
-  $self->response->body($output);
+    or die $tt->error;	
+  $self->output($output);
 }
 
 
@@ -105,10 +115,29 @@ sub param {
 }
 
 
-sub prototype_enter { }
+sub prototype_enter {
+    my($self)=@_;
+
+    require Time::HiRes;
+    $self->session_start_time ( [Time::HiRes::gettimeofday()] ) ;
+}
 
 sub prototype_leave { 
     my($self)=@_;
+
+    my $elapsed = sprintf '%f',
+      Time::HiRes::tv_interval($self->session_start_time, [Time::HiRes::gettimeofday()]);
+    my $rps = $elapsed == 0 ? '??' : sprintf '%.3f', 1 / $elapsed;
+    $self->log->debug("=== Request took $elapsed seconds ($rps/s) ===");
+
+}
+
+sub app_enter {}
+
+sub app_leave {
+    my($self)=@_;
+
+    $self->response->body($self->output);
 
     my $message = '';
 
@@ -121,10 +150,6 @@ sub prototype_leave {
     print $message;
 
 }
-
-sub app_enter {}
-
-sub app_leave {}
 
 sub control_enter {}
 
@@ -154,42 +179,5 @@ sub respond {
   return $self;		# do nothing, stay here
 }
 
-=back
-
-=head1 SEE ALSO
-
-L<Moose>
-
-=head1 SUPPORT, MAILING LIST, SOURCE REPO
-
-The mailing list for CGI::Prototype is archived at
-L<http://www.mail-archive.com/cgi-prototype-users@lists.sourceforge.net/index.html>
-
-You may sign up here
-L<https://lists.sourceforge.net/lists/listinfo/cgi-prototype-users>
-
-for general discussion or bug reports.
-
-=head2 Source repo
-
-Randal Schwartz maintains the source repo on github:
-http://github.com/RandalSchwartz/perl-module-cgi-prototype/tree/master
-
-Terrence Brannon has the moose-active fork of the repo at:
-L<http://github.com/metaperl/perl-module-cgi-prototype/tree/master>
-
-
-=head1 AUTHOR
-
-Terrence Brannon
-
-=head1 COPYRIGHT AND LICENSE
-
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.5 or,
-at your option, any later version of Perl 5 you may have available.
-
-=cut
 
 1;

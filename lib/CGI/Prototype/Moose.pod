@@ -1,6 +1,6 @@
 =head1 NAME
 
-CGI::Prototype::Moose - Create a CGI application with Moose OOP
+  CGI::Prototype::Moose - Create a CGI application with Moose
 
 =head1 SYNOPSIS
 
@@ -8,6 +8,7 @@ In F<WebApp.pm>
 
   package WebApp;
   use base qw/CGI::Prototype::Moose/;
+  1;
 
 In F<webapp.cgi>
 
@@ -54,14 +55,78 @@ simple example shown here:
 
 L<http://perlmonks.org/?node_id=786745|http://perlmonks.org/?node_id=786745>.
 
-=head1 API / Usage
+=head1 Attributes
 
-These slots provide core functionality.  You will probably not
-need to override these.
+L<CGI::Prototype::Moose> implements the following attributes.
 
-=over 4
 
-=item activate
+=head2 C<request> (lazy)
+
+Provides a L<Mojo::Message::Request> instance suitable for processing
+HTTP request data.
+
+=head3 C<CGI> (lazy)
+
+If you prefer a L<CGI::Simple> API for processing HTTP request data,
+then use this attribute instead. 
+
+=head2 C<response> (lazy)
+
+Provides a L<Mojo::Message::Response> instance. This is used to
+provide our HTTP response. By default, it sets the content type to
+C<text/html>.
+
+The C<prototype_leave()> method sets C<< $self->response->body >> to the 
+value of C<output> attribute, which is normally bound during the
+C<render()> method
+
+=head2 C<log> (lazy)
+
+Provides a L<Mojo::Log> instance which logs to STDERR by
+default. Standard L<Moose> techniques for overriding/modifying a
+builder method allow for other logging options, or complete
+replacement by a more heavy-duty solution such L<Log::Dispatch>.
+
+=head2 C<output>
+
+This is where you store any output you want returned in the HTTP body.
+
+=head2 C<engine> (lazy)
+
+This creates an instance of your templating engine. By default it
+creates a C<Template> engine. 
+
+Because L<Mojo> is a prerequisite for L<CGI::Prototype::Moose>,
+L<Mojo::Template> is also available for your use.
+
+=head2 C<engine_config> (lazy)
+
+This is where you construct the parameters that will be supplied to
+the constructor of your engine. By default it returns an empty list.
+
+=head2 C<template> (lazy)
+
+This is where you provide a text string that your L</engine> will
+process in L</render>
+
+The default attribute builds a template document object (something compatible to the
+L<Template> C<process> method, such as a L<Template::Document> or a
+filehandle or a reference to a scalar).  The default is a simple "this
+page intentionally left blank" string template.
+
+When rendered, the B<only> extra global variable passed into the
+template is the C<self> variable, representing the controller object.
+However, as seen earlier, this is sufficient to allow access to
+anything you need from the template, thanks to Template Toolkit's
+ability to call methods on an object and understand the results.
+
+For example, to get at the C<barney> parameter:
+
+  The barney field is [% self.param("barney") | html %].
+
+=head1 METHODS
+
+=head2 C<activate>
 
 Invoke the C<activate> slot to "activate" your application,
 causing it to process the incoming CGI values, select a page to be
@@ -77,88 +142,52 @@ Again, this will not be interesting, but it shows that the null app
 is easy to create.  Almost always, you will want to override some
 of the "callback" slots below.
 
-=cut
+It turns out it is easier to simply look at the source of C<activate> 
+that to explain it. So here it is:
 
-sub activate {
-  my $self = shift;
-  eval {
-    $self->prototype_enter;
-    $self->app_enter;
-    my $this_page = $self->dispatch;
-    $this_page->control_enter;
-    $this_page->respond_enter;
-    my $next_page = $this_page->respond;
-    $this_page->respond_leave;
-    if ($this_page ne $next_page) {
-      $this_page->control_leave;
-      $next_page->control_enter;
-    }
+  sub activate {
+    my $self = shift;
+    eval {
+      $self->prototype_enter;
+      $self->app_enter;
+      my $this_page = $self->dispatch;
+      $this_page->control_enter;
+      $this_page->respond_enter;
+      my $next_page = $this_page->respond;
+      $this_page->respond_leave;
+      if ($this_page ne $next_page) {
+        $this_page->control_leave;
+        $next_page->control_enter;
+      }
     $next_page->render_enter;
     $next_page->render;
     $next_page->render_leave;
     $next_page->control_leave;
     $self->app_leave;
     $self->prototype_leave;
-  };
-  $self->error($@) if $@;	# failed something, go to safe mode
-}
+   };
+   $self->error($@) if $@;	
+  }
 
-=item CGI
+=head3 C<render>
 
-Invoking C<< $self->CGI >> gives you access to the CGI.pm object
-representing the incoming parameters and other CGI.pm-related values.
-For example,
+The C<render()> method uses the results from applying L</engine> to a L</template>
+By default the results of C<render()> are stored in L</output> and
+spit back to the webserver in L</prototype_leave>.
 
-  $self->CGI->self_url
+Again, because CGIP uses such clear object-oriented logic, it is
+easier to show the code than talk about it. Here is the default render method:
 
-generates a self-referencing URL.  From a template, this is:
+  sub render {
+    my $self = shift;
+    my $tt = $self->engine;
+  
+    $tt->process($self->template, { self => $self }, \my $output)
+      or die $tt->error;	
+    $self->output($output);
+  }
 
-  [% self.CGI.self_url %]
-
-for the same thing.
-
-See C<initialize_CGI> for how this slot gets established.
-
-=cut
-
-$_mirror->addSlot
-  (CGI => sub { die shift, "->initialize_CGI not called" });
-
-=item render
-
-The C<render> method uses the results from C<engine> and C<template>
-to process a selected template through Template Toolkit.  If the
-result does not throw an error, C<< $self->display >> is called to
-show the result.
-
-=cut
-
-sub render {
-  my $self = shift;
-  my $tt = $self->engine;
-  my $self_object = $self->reflect->object; # in case we have a classname
-  $tt->process($self->template, { self => $self_object }, \my $output)
-    or die $tt->error;	# passes Template::Exception upward
-  $self->display($output);
-}
-
-=item display
-
-The C<display> method is called to render the output of the template
-under normal circumstances, normally dumping the first parameter to
-C<STDOUT>.  Test harnesses may override this method to cause the
-output to appear into a variable, but normally this method is left
-alone.
-
-=cut
-
-sub display {			# override this to grab output for testing
-  my $self = shift;
-  my $output = shift;
-  print $output;
-}
-
-=item param
+=item C<param>
 
 The C<param> method is a convenience method that maps to
 C<< $self->CGI->param >>, because accessing params is a very common thing.
@@ -169,224 +198,30 @@ sub param {
   shift->CGI->param(@_);	# convenience method
 }
 
-=item interstitial
 
-B<Please note that this feature is still experimental
-and subject to change.>
-
-Use this in your per-page respond methods if you have a lot of heavy
-processing to perform.  For example, suppose you're deleting
-something, and it takes 5 seconds to do the first step, and 3 seconds
-to do the second step, and then you want to go back to normal web
-interaction.  Simulating the heavy lifting with sleep, we get:
-
-  my $p = $self->interstitial
-    ({ message => "Your delete is being processed...",
-       action => sub { sleep 5 },
-     },
-     { message => "Just a few seconds more....",
-       action => sub { sleep 3 },
-     },
-    );
-  return $p if $p;
-
-C<interstitial> returns either a page that should be returned so that
-it can be rendered (inside a wrapper that provides the standard top
-and bottom of your application page), or C<undef>.
-
-The list passed to
-C<interstitial> should be a series of hashrefs with one or more
-parameters reflecting the steps:
-
-=over 4
-
-=item message
-
-What the user should see while the step is computing.
-(Default: C<Working...>.)
-
-=item action
-
-A coderef with the action performed server-side during the message.
-(Default: no action.)
-
-=item delay
-
-The number of seconds the browser should wait before initiating
-the next connection, triggering the start of C<action>.
-(Default: 0 seconds.)
-
-=back
-
-The user sees the first message at the first call to C<interstitial>
-(via the first returned page), at which time a meta-refresh will
-immediately repost the same parameters as on the call that got you
-here.  (Thus, it's important not to have changed the params yet, or
-you might end up in a different part of your code.)  When the call to
-C<interstitial> is re-executed, the first coderef is then performed.
-At the end of that coderef, the second interstitial page is returned,
-and the user sees the second message, which then performs the next
-meta-refresh, which gets us back to this call to C<interstitial> again
-(whew).  The second coderef is executed while the user is seeing the
-second message, and then C<interstitial> returns C<undef>, letting us
-roll through to the final code.  Slick.
-
-=cut
-
-sub interstitial {
-  my $self = shift;
-  my @steps = @_;
-
-  my $cip = $self->config_interstitial_param;
-  my $step = $self->param($cip) || 0;
-  ## todo: validate $state is a small integer in range
-
-  if ($step >= 1 and $step <= @steps) { # we got work to do
-    if (defined (my $code = $steps[$step - 1]{action})) {
-      $code->();		# run the action
-    }
-  }
-
-  ## now show the user the message during the next step
-  $step++;
-
-  unless ($step >= 1 and $step <= @steps) {
-    $self->CGI->delete($cip);
-    return undef;		# signal steps being done
-  }
-  $self->param($cip, $step);
-
-  my $message = $steps[$step - 1]{message} || "Working...";
-  my $delay = $steps[$step - 1]{delay} || 0;
-
-  ## generate interstitial page as light class
-  return $self->new(
-		    url => $self->CGI->self_url,
-		    message => $message,
-		    delay => $delay,
-		    shortname => $self->shortname,
-		    template => \ <<'',
-<META HTTP-EQUIV=Refresh CONTENT="[% self.delay %]; URL=[% self.url | html %]">
-[% self.message %]<br>
-(If your browser isn't automatically trying to fetch a page right now,
-please <a href="[% self.url | html %]">continue manually</a>.)
-
-		   );
-}
-
-=item config_interstitial_param
-
-This parameter is used by C<interstitial> to determine the
-processing step.  You should ensure that the name doesn't conflict
-with any other param that you might need.
-
-The default value is C<_interstitial>.
-
-=cut
-
-sub config_interstitial_param { "_interstitial" }
-
-=back
-
-=head2 CALLBACK SLOTS
-
-=over 4
-
-=item engine
-
-The engine returns a Template object that will be generating any
-response.  The object is computed lazily (with autoloading) when
-needed.
-
-The Template object is passed the configuration returned from
-the C<engine_config> callback.
-
-=cut
-
-$_mirror->addSlot
-  ([qw(engine FIELD autoload)] => sub {
-     my $self = shift;
-     require Template;
-     Template->new($self->engine_config)
-       or die "Creating tt: $Template::ERROR\n";
-   });
-
-=item engine_config
-
-Returns a hashref of desired parameters to pass to
-the C<Template> C<new> method as a configuration.  Defaults
-to an empty hash.
-
-=cut
-
-sub engine_config {
-  return {};
-}
-
-=item prototype_enter
+=head2 C<prototype_enter>
 
 Called when the prototype mechanism is entered, at the very beginning
-of each hit.  Defaults to calling C<->initialize_CGI>, which see.
+of each hit.  
 
-Generally, you should not override this method. If you do, be sure to
-call the SUPER method, in case future versions of this module need
-additional initialization.
-
-=cut
-
-sub prototype_enter {
-  shift->initialize_CGI;
-}
-
-=item prototype_leave
+=head2 C<prototype_leave>
 
 Called when the prototype mechanism is exited, at the very end of each hit.
-Defaults to no action.
 
-Generally, you should not override this method. If you do, be sure to
-call the SUPER method, in case future versions of this module need
-additional teardown.
+It binds L</output> to C<< $self->response->body >> and then prints
+it to STDOUT.
 
-=cut
-
-sub prototype_leave {}
-
-=item initialize_CGI
-
-Sets up the CGI slot as an autoload, defaulting to creating a new
-CGI.pm object.  Called from C<prototype_enter>.
-
-=cut
-
-sub initialize_CGI {
-  my $self = shift;
-  $self->reflect->addSlot
-    ([qw(CGI FIELD autoload)] => sub {
-       require CGI;
-       CGI::_reset_globals();
-       CGI->new;
-     });
-}
-
-=item app_enter
+=head2 C<app_enter>
 
 Called when the application is entered, at the very beginning of each
 hit.  Defaults to no action.
 
-=cut
-
-sub app_enter {}
-
-=item app_leave
+=head2 C<app_leave>
 
 Called when the application is left, at the very end of each hit.
 Defaults to no action.
 
-=cut
-
-sub app_leave {}
-
-=item control_enter
+=head2 C<control_enter>
 
 Called when a page gains control, either at the beginning for a
 response, or in the middle when switched for rendering.  Defaults to
@@ -395,11 +230,8 @@ nothing.
 This is a great place to hang per-page initialization, because you'll
 get this callback at most once per hit.
 
-=cut
 
-sub control_enter {}
-
-=item control_leave
+=head2 C<control_leave>
 
 Called when a page loses control, either after a response phase
 because we're switching to a new page, or render phase after we've
@@ -408,72 +240,30 @@ delivered the new text to the browser.
 This is a great place to hang per-page teardown, because you'll get
 this callback at most once per hit.
 
-=cut
+=head2 C<render_enter>
 
-sub control_leave {}
+Called when a page gains control specifically for rendering, just
+after C<control_enter>. 
 
-=item render_enter
-
-Called when a page gains control specifically for rendering (delivering
-text to the browser), just after C<control_enter> if needed.
-
-=cut
-
-sub render_enter {}
-
-=item render_leave
+=head2 C<render_leave>
 
 Called when a page loses control specifically for rendering (delivering
 text to the browser), just before C<control_leave>.
 
-=cut
-
-sub render_leave {}
-
-=item respond_enter
+=head2 C<respond_enter>
 
 Called when a page gains control specifically for responding
 (understanding the incoming parameters, and deciding what page should
 render the response), just after C<control_enter>.
 
-=cut
 
-sub respond_enter {}
-
-=item respond_leave
+=head2 C<respond_leave>
 
 Called when a page loses control specifically for rendering
 (understanding the incoming parameters, and deciding what page should
 render the response), just before C<control_leave> (if needed).
 
-=cut
-
-sub respond_leave {}
-
-=item template
-
-Delivers a template document object (something compatible to the
-C<Template> C<process> method, such as a C<Template::Document> or a
-filehandle or a reference to a scalar).  The default is a simple "this
-page intentionally left blank" template.
-
-When rendered, the B<only> extra global variable passed into the
-template is the C<self> variable, representing the controller object.
-However, as seen earlier, this is sufficient to allow access to
-anything you need from the template, thanks to Template Toolkit's
-ability to call methods on an object and understand the results.
-
-For example, to get at the C<barney> parameter:
-
-  The barney field is [% self.param("barney") | html %].
-
-=cut
-
-sub template {
-  \ '[% self.CGI.header %]This page intentionally left blank.';
-}
-
-=item error
+=head2 C<error>
 
 Called if an uncaught error is triggered in any of the other steps,
 passing the error text or object as the first method parameter.  The
@@ -482,15 +272,7 @@ highly insecure and should be overridden, perhaps with something that
 logs the error and puts up a generic error message with an incident
 code for tracking.
 
-=cut
-
-sub error {
-  my $self = shift;
-  my $error = shift;
-  $self->display("Content-type: text/plain\n\nERROR: $error");
-}
-
-=item dispatch
+=head2 C<dispatch>
 
 Called to analyze the incoming parameters to define which page object
 gets control based on the incoming CGI parameters.
@@ -499,14 +281,7 @@ This callback B<must return> a page object (the object taking control
 during the response phase).  By default, this callback returns the
 application itself.
 
-=cut
-
-sub dispatch {
-  my $self = shift;
-  return $self;		# do nothing, stay here
-}
-
-=item respond
+=head2 C<respond>
 
 Called to determine how to respond specifically to this set of
 incoming parameters.  Probably updates databases and such.
@@ -516,54 +291,35 @@ during the render phase).  By default, this callback returns the same
 object that had control during the response phase ("stay here" logic),
 which works most of the time.
 
-=cut
-
-sub respond {
-  my $self = shift;
-  return $self;		# do nothing, stay here
-}
-
-=back
 
 =head1 SEE ALSO
 
-L<Class::Prototyped>, L<Template::Manual>,
-L<http://www.stonehenge.com/merlyn/LinuxMag/col56.html>.
+L<Moose>, L<Mojo>, L<CGI::Prototype>, L<http://www.stonehenge.com/merlyn/LinuxMag/col56.html>.
 
 =head1 SUPPORT, MAILING LIST, SOURCE REPO
 
-The mailing list for CGI::Prototype is archived at
-L<http://www.mail-archive.com/cgi-prototype-users@lists.sourceforge.net/index.html>
-
-You may sign up here
+You may sign up for the mailing list here:
 L<https://lists.sourceforge.net/lists/listinfo/cgi-prototype-users>
 
-for general discussion or bug reports.
+The mailing list is archived at
+L<http://www.mail-archive.com/cgi-prototype-users@lists.sourceforge.net/index.html>
+
 
 =head2 Source repo
 
 Randal Schwartz maintains the source repo on github:
 http://github.com/RandalSchwartz/perl-module-cgi-prototype/tree/master
 
-Terrence Brannon has the moose-active fork of the repo at:
+Terrence Brannon has forked Randal's repo and is making CGIP moose-mojo-active!
 L<http://github.com/metaperl/perl-module-cgi-prototype/tree/master>
 
 
 =head1 AUTHOR
 
-Randal L. Schwartz, E<lt>merlyn@stonehenge.comE<gt>
+Terrence Brannon
 
-Special thanks to Geekcruises.com and an unnamed large university
-for providing funding for the development of this module.
+=head2 Acks
 
-=head1 COPYRIGHT AND LICENSE
+Many thanks to Sebastian Riedel for his help with L<Mojo>.
 
-Copyright (C) 2003, 2004, 2005 by Randal L. Schwartz
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.5 or,
-at your option, any later version of Perl 5 you may have available.
-
-=cut
-
-1;
