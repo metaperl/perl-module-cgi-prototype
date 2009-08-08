@@ -1,5 +1,7 @@
 Makefile
 MANIFEST.bak
-
 *~
 #*#
+access.log
+error.log
+httpd.pid

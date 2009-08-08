@@ -61,6 +61,12 @@ sub activate {
   $self->error($@) if $@;	# failed something, go to safe mode
 }
 
+sub display {			# override this to grab output for testing
+  my $self = shift;
+  my $output = shift;
+  print $output;
+}
+
 
 sub render {
   my $self = shift;
@@ -71,11 +77,6 @@ sub render {
   $self->display($output);
 }
 
-sub display {			# override this to grab output for testing
-  my $self = shift;
-  my $output = shift;
-  print $output;
-}
 
 sub param {
   shift->cgi->param(@_);	# convenience method
