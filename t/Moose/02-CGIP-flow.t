@@ -70,6 +70,10 @@ my $RESPOND = "My::App::One";
 
 }
 
+warn 1.1;
+use Carp;
+$SIG{__DIE__} = \*Carp::confess;
+
 @TRACE =();
 My::App->new->activate;
 show_trace;
@@ -91,9 +95,11 @@ is_deeply \@TRACE,
   ],
   'correct steps called for same page';
 
+warn 1.2;
+
 @TRACE = ();
 $RESPOND = "My::App::Two";
-My::App->activate;
+My::App->new->activate;
 is_deeply \@TRACE,
   [
    ['My::App', 'prototype_enter'],

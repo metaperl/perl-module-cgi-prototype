@@ -70,18 +70,31 @@ sub _build_template {
    \'This page intentionally left blank.';
 }
 
+sub load_module {
+    my($self, $module, $new)=@_;
 
+    my $class = Class::Mop::load_class($module);
+    $class->new if $new;
+}
 
 sub activate {
     my $self = shift;
 
     $self->prototype_enter;
     $self->app_enter;
-    my $this_page = $self->dispatch;
+
+    my $_this_page = $self->dispatch;
+    $this_page = $self->load_module($_this_page, 1);
+
     $this_page->control_enter;
     $this_page->respond_enter;
-    my $next_page = $this_page->respond;
+
+    my $_next_page = $this_page->respond;
+
     $this_page->respond_leave;
+
+    $next_page = $self->load_module($_next_page, 1);
+
     if ($this_page ne $next_page) {
 	$this_page->control_leave;
 	$next_page->control_enter;
@@ -144,7 +157,7 @@ sub prototype_leave {
 sub _open_timer {
     my($self)=@_;
 
-    Carp::cluck "ARGS: @_";
+
 
     require Time::HiRes;
     $self->session_start_time ( [Time::HiRes::gettimeofday()] ) ;

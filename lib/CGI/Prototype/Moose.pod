@@ -332,4 +332,7 @@ Terrence Brannon
 
 Many thanks to Sebastian Riedel for his help with L<Mojo>.
 
+Many thanks to Ricard Signes for pointing me to L<Class::Mop>.
+
+
 
