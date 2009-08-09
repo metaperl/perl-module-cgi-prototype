@@ -272,6 +272,11 @@ Called when the prototype mechanism is exited, at the very end of each hit.
 It binds L</output> to C<< $self->response->body >> and then prints
 it to STDOUT.
 
+=head2 C<produce_output>
+
+Called to build headers and body and then print to standard out. If
+C<< $ENV{CGI_PROTO_RETURN_ONLY >> is true then no output is produced.
+
 =head2 C<error>
 
 Called if an uncaught error is triggered in any of the other steps,

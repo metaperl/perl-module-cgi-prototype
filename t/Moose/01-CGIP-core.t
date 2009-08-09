@@ -1,7 +1,7 @@
 #! perl
 use Test::More no_plan;
 
-my @core_slots = qw(request response log output CGI activate app_enter app_leave control_enter
+my @core_slots = qw(response log output activate app_enter app_leave control_enter
 	       control_leave dispatch engine error param
 	       render render_enter render_leave respond respond_enter
 	       respond_leave template);
@@ -35,5 +35,5 @@ open IN, 'test.out' or die $!;
 my $web_output = join("", <IN>);
 like $web_output, qr/This page intentionally left blank/ms,  'proper output from null app';
 
-is_deeply [$m->CGI->param], [],  'verify no params';
+is_deeply [$m->cgi->param], [],  'verify no params';
 

@@ -2,7 +2,7 @@ package CGI::Prototype::Moose;
 
 use Moose;
 
-has 'request'  => (is => 'ro', lazy_build => 1);
+has 'cgi'  => (is => 'ro', lazy_build => 1);
 has 'response' => (is => 'ro', lazy_build => 1);
 has 'log'      => (is => 'rw', lazy_build => 1);
 
@@ -12,12 +12,14 @@ has 'engine'   => (is => 'rw', lazy_build => 1);
 has 'engine_config' => (is => 'rw', lazy_build => 1);
 has 'template'      => (is => 'rw', lazy_build => 1);
 
-before 'activate' => sub { shift->open_timer   } ;
-after  'activate' => sub { shift->closer_timer } ;
+before 'activate' => sub { shift->_open_timer   } ;
+after  'activate' => sub { shift->_close_timer } ;
 has 'session_start_time' => (is => 'rw');
 
+# These two lines get overridden by something.
+# You have to set your die handler in your application module
 use Carp;
-$SIG{__DIE__} = \*Carp::confess;
+local $SIG{__DIE__} = \*Carp::confess;
 
 
 sub _build_request {
@@ -39,11 +41,14 @@ sub _build_response {
 sub _build_log {
     require Mojo::Log;
 
-    my $log = Mojo::Log->new;
+    my $log = Mojo::Log->new
+      (
+       level => 'debug'
+      );
     $log;
 }
 
-sub _build_CGI {
+sub _build_cgi {
     my($self)=@_;
 
     require CGI::Simple;
@@ -136,14 +141,16 @@ sub prototype_leave {
 
 }
 
-sub open_timer {
+sub _open_timer {
     my($self)=@_;
+
+    warn "ARGS: @_";
 
     require Time::HiRes;
     $self->session_start_time ( [Time::HiRes::gettimeofday()] ) ;
 }
 
-sub close_timer {
+sub _close_timer {
     my($self)=@_;
 
     my $elapsed = sprintf '%f',
