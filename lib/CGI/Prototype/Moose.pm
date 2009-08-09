@@ -94,11 +94,15 @@ sub activate {
 #   print $output;
 # }
 
+=for later
+
 sub redirect {
     my($self, $url)=@_;
 
     $self->response->code(302)->headers->location($url);
 }
+
+=cut
 
 sub render {
   my $self = shift;

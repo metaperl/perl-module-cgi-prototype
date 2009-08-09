@@ -48,14 +48,14 @@ it ("render").
 
 =back
 
-L<CGI::Prototype>, unlike most web app frameworks emphasizes requires
-each controller to be a class. This allows for fine-grained control
+L<CGI::Prototype>, unlike most web app frameworks requires that
+each controller to be in a separate class. This results in fine-grained control
 and scaleability over all aspects of the CGI request cycle, with a
 simple example shown here:
 
 L<http://perlmonks.org/?node_id=786745|http://perlmonks.org/?node_id=786745>.
 
-=head1 Attributes
+=head1 ATTRIBUTES
 
 L<CGI::Prototype::Moose> implements the following attributes.
 
@@ -94,7 +94,7 @@ This is where you store any output you want returned in the HTTP body.
 =head2 C<engine> (lazy)
 
 This creates an instance of your templating engine. By default it
-creates a C<Template> engine. 
+creates a L<Template Toolkit|Template> engine. 
 
 Because L<Mojo> is a prerequisite for L<CGI::Prototype::Moose>,
 L<Mojo::Template> is also available for your use.
@@ -102,7 +102,8 @@ L<Mojo::Template> is also available for your use.
 =head2 C<engine_config> (lazy)
 
 This is where you construct the parameters that will be supplied to
-the constructor of your engine. By default it returns an empty list.
+the constructor of your engine. By default it returns an empty
+hashref. 
 
 =head2 C<template> (lazy)
 
@@ -143,7 +144,7 @@ is easy to create.  Almost always, you will want to override some
 of the "callback" slots below.
 
 It turns out it is easier to simply look at the source of C<activate> 
-that to explain it. So here it is:
+than to explain it. So here it is:
 
   sub activate {
     my $self = shift;
@@ -169,7 +170,7 @@ that to explain it. So here it is:
    $self->error($@) if $@;	
   }
 
-=head3 C<render>
+=head2 C<render>
 
 The C<render()> method uses the results from applying L</engine> to a L</template>
 By default the results of C<render()> are stored in L</output> and
@@ -187,17 +188,10 @@ easier to show the code than talk about it. Here is the default render method:
     $self->output($output);
   }
 
-=item C<param>
+=head2 C<param> (lazy)
 
 The C<param> method is a convenience method that maps to
 C<< $self->CGI->param >>, because accessing params is a very common thing.
-
-=cut
-
-sub param {
-  shift->CGI->param(@_);	# convenience method
-}
-
 
 =head2 C<prototype_enter>
 
@@ -292,11 +286,9 @@ object that had control during the response phase ("stay here" logic),
 which works most of the time.
 
 
-=head1 SEE ALSO
+=head1 SUPPORT
 
-L<Moose>, L<Mojo>, L<CGI::Prototype>, L<http://www.stonehenge.com/merlyn/LinuxMag/col56.html>.
-
-=head1 SUPPORT, MAILING LIST, SOURCE REPO
+=head2 Mailing List
 
 You may sign up for the mailing list here:
 L<https://lists.sourceforge.net/lists/listinfo/cgi-prototype-users>
@@ -305,20 +297,26 @@ The mailing list is archived at
 L<http://www.mail-archive.com/cgi-prototype-users@lists.sourceforge.net/index.html>
 
 
+=head1 DEVELOPMENT
+
 =head2 Source repo
 
 Randal Schwartz maintains the source repo on github:
 http://github.com/RandalSchwartz/perl-module-cgi-prototype/tree/master
 
-Terrence Brannon has forked Randal's repo and is making CGIP moose-mojo-active!
+Terrence Brannon has forked Randal's repo for the Moose implementation:
 L<http://github.com/metaperl/perl-module-cgi-prototype/tree/master>
+
+
+=head1 SEE ALSO
+
+L<Moose>, L<Mojo>, L<CGI::Prototype>, L<http://www.stonehenge.com/merlyn/LinuxMag/col56.html>.
+
 
 
 =head1 AUTHOR
 
 Terrence Brannon
-
-=head2 Acks
 
 Many thanks to Sebastian Riedel for his help with L<Mojo>.
 

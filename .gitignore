@@ -6,3 +6,6 @@ MANIFEST.bak
 access.log
 error.log
 httpd.pid
+
+blib/*
+pm_to_blib

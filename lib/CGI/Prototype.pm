@@ -14,19 +14,19 @@ our $_mirror = __PACKAGE__->reflect; # for slots that aren't subs
 
 =head1 NAME
 
-CGI::Prototype - Create a CGI application by subclassing
+  CGI::Prototype - Object-oriented CGI application development
 
 =head1 SYNOPSIS
 
-  package My::HelloWorld;
+F<WebApp.pm>
+
+  package WebApp;
   use base CGI::Prototype;
+  1;
 
-  sub template { \ <<'END_OF_TEMPLATE' }
-  [% self.CGI.header; %]
-  Hello world at [% USE Date; Date.format(date.now) | html %]!
-  END_OF_TEMPLATE
+F<webapp.cgi>
 
-  My::HelloWorld->activate;
+  WebApp->activate;
 
 =head1 DESCRIPTION
 
