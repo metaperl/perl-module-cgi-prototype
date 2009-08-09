@@ -1,0 +1,21 @@
+=head1 NAME
+
+  CGI::Prototype::Moose::Doc::FAQ - FAQ
+
+=head1 GOTCHAS
+
+=head2 Be careful how you call activate
+
+In L<CGI::Prototype> you started an app via
+
+  MyApp->activate;
+
+Not so in L<CGI::Prototype::Moose>! Instead you create an instance and call that:
+
+  MyApp->new->activate;
+
+You will get mysterious errors like this if you dont:
+
+  Can't use string ("MyApp") as a HASH ref while "strict refs" in use at accessor session_start_time
+
+Because you will be passing a class to C<activate()> instead of an object.

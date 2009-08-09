@@ -71,7 +71,7 @@ my $RESPOND = "My::App::One";
 }
 
 @TRACE =();
-My::App->activate;
+My::App->new->activate;
 show_trace;
 is_deeply \@TRACE,
   [
