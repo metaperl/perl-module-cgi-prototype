@@ -311,7 +311,7 @@ L<http://www.mail-archive.com/cgi-prototype-users@lists.sourceforge.net/index.ht
 Randal Schwartz maintains the source repo on github:
 L<http://github.com/RandalSchwartz/perl-module-cgi-prototype/tree/master>
 
-Terrence Brannon has forked Randal's repo for the Moose implementation:
+Terrence Brannon has forked Randal's repo for the Moose/Mojo implementation:
 L<http://github.com/metaperl/perl-module-cgi-prototype/tree/master>
 
 

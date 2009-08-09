@@ -24,17 +24,16 @@ can_ok $m, @core_slots;
 
 
 {
-  open my $stdout, ">&STDOUT" or die;
-  open STDOUT, '>test.out' or die;
-  END { unlink 'test.out' }
+  open my $stdout, ">&STDOUT" or die $!;
+  open STDOUT, '>test.out' or die $!;
+  #END { unlink 'test.out' }
   My::App->new->activate;
-  open STDOUT, ">&=".fileno($stdout) or die;
+  open STDOUT, ">&=".fileno($stdout) or die $!;
 }
 
-open IN, 'test.out' or die;
-like join("", <IN>), qr/This page intentionally left blank/ms,
-  'proper output from null app';
+open IN, 'test.out' or die $!;
+my $web_output = join("", <IN>);
+like $web_output, qr/This page intentionally left blank/ms,  'proper output from null app';
 
-is_deeply [$m->CGI->param], [],
-  'verify no params';
+is_deeply [$m->CGI->param], [],  'verify no params';
 

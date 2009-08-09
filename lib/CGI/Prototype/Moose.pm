@@ -6,15 +6,18 @@ has 'request'  => (is => 'ro', lazy_build => 1);
 has 'response' => (is => 'ro', lazy_build => 1);
 has 'log'      => (is => 'rw', lazy_build => 1);
 
+
 has 'output'   => (is => 'rw');
-has 'CGI'    => (is => 'rw', lazy_build => 1);
-has 'engine' => (is => 'rw', lazy_build => 1);
+has 'engine'   => (is => 'rw', lazy_build => 1);
 has 'engine_config' => (is => 'rw', lazy_build => 1);
+has 'template'      => (is => 'rw', lazy_build => 1);
 
-has 'template' => (is => 'rw', lazy_build => 1);
-
+before 'activate' => sub { shift->open_timer   } ;
+after  'activate' => sub { shift->closer_timer } ;
 has 'session_start_time' => (is => 'rw');
 
+use Carp;
+$SIG{__DIE__} = \*Carp::confess;
 
 
 sub _build_request {
@@ -59,14 +62,14 @@ sub _build_engine {
 sub _build_engine_config { {} }
 
 sub _build_template {
-   'This page intentionally left blank.';
+   \'This page intentionally left blank.';
 }
 
 
 
 sub activate {
-  my $self = shift;
-  eval {
+    my $self = shift;
+
     $self->prototype_enter;
     $self->app_enter;
     my $this_page = $self->dispatch;
@@ -75,8 +78,8 @@ sub activate {
     my $next_page = $this_page->respond;
     $this_page->respond_leave;
     if ($this_page ne $next_page) {
-      $this_page->control_leave;
-      $next_page->control_enter;
+	$this_page->control_leave;
+	$next_page->control_enter;
     }
     $next_page->render_enter;
     $next_page->render;
@@ -84,8 +87,14 @@ sub activate {
     $next_page->control_leave;
     $self->app_leave;
     $self->prototype_leave;
-  };
-  $self->error($@) if $@;	# failed something, go to safe mode
+
+    $self->produce_output;
+    
+    
+    unless ($ENV{CGI_PROTO_RETURN_ONLY}) {
+	print $self->output;
+    }
+  
 }
 
 sub display {		    # override this to grab output for testing
@@ -115,30 +124,35 @@ sub render {
 
 
 sub param {
-  shift->cgi->param(@_);	# convenience method
+  shift->request->param(@_);	# convenience method
 }
 
 
 sub prototype_enter {
+
+}
+
+sub prototype_leave { 
+
+}
+
+sub open_timer {
     my($self)=@_;
 
     require Time::HiRes;
     $self->session_start_time ( [Time::HiRes::gettimeofday()] ) ;
 }
 
-sub prototype_leave { 
+sub close_timer {
     my($self)=@_;
 
     my $elapsed = sprintf '%f',
       Time::HiRes::tv_interval($self->session_start_time, [Time::HiRes::gettimeofday()]);
     my $rps = $elapsed == 0 ? '??' : sprintf '%.3f', 1 / $elapsed;
     $self->log->debug("=== Request took $elapsed seconds ($rps/s) ===");
-
 }
 
-sub app_enter {}
-
-sub app_leave {
+sub produce_output {
     my($self)=@_;
 
     $self->response->body($self->output);
@@ -151,8 +165,14 @@ sub app_leave {
     # Body
     $message .= $self->response->build_body;
 
-    print $message;
+    $self->output( $message ) ;
+}
 
+
+
+sub app_enter {}
+
+sub app_leave {
 }
 
 sub control_enter {}

@@ -836,3 +836,26 @@
 [Sat Aug 08 11:14:00 2009] [error] [client 75.187.105.186] Can't locate object method "display" via package "WebApp" at /home/tbrannon/prg/perl-module-cgi-prototype/lib/CGI/Prototype/Moose.pm line 169.
 [Sat Aug 08 11:14:00 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
 [Sat Aug 08 11:14:48 2009] [error] [client 75.187.105.186] Sat Aug  8 11:14:48 2009 debug CGI::Prototype::Moose:131 [22855]: === Request took 0.159674 seconds (6.263/s) ===
+[Sun Aug 09 16:16:40 2009] [error] [client 75.187.105.186] Can't locate object method "closer_timer" via package "WebApp" at /home/tbrannon/prg/perl-module-cgi-prototype/lib/CGI/Prototype/Moose.pm line 16.
+[Sun Aug 09 16:17:23 2009] [error] [client 75.187.105.186] Can't locate object method "closer_timer" via package "WebApp" at /home/tbrannon/prg/perl-module-cgi-prototype/lib/CGI/Prototype/Moose.pm line 16.
+[Sun Aug 09 16:17:51 2009] [error] [client 75.187.105.186] file error - This page intentionally left blank.: not found
+[Sun Aug 09 16:17:51 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
+[Sun Aug 09 16:19:33 2009] [error] [client 75.187.105.186] file error - This page intentionally left blank.: not found
+[Sun Aug 09 16:19:33 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
+[Sun Aug 09 16:21:46 2009] [error] [client 75.187.105.186] Can't locate object method "closer_timer" via package "WebApp" at /home/tbrannon/prg/perl-module-cgi-prototype/lib/CGI/Prototype/Moose.pm line 16.
+[Sun Aug 09 16:22:14 2009] [error] [client 75.187.105.186] hi there at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/WebApp.pm line 6.
+[Sun Aug 09 16:22:14 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
+[Sun Aug 09 16:23:14 2009] [error] [client 75.187.105.186] hi there at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/WebApp.pm line 6.
+[Sun Aug 09 16:23:14 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
+[Sun Aug 09 16:24:29 2009] [error] [client 75.187.105.186] hi there at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/WebApp.pm line 6.
+[Sun Aug 09 16:24:29 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
+[Sun Aug 09 16:25:40 2009] [error] [client 75.187.105.186] hi there at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/WebApp.pm line 6.
+[Sun Aug 09 16:25:40 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi
+[Sun Aug 09 16:26:14 2009] [error] [client 75.187.105.186] hi there at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/WebApp.pm line 14.
+[Sun Aug 09 16:26:14 2009] [error] [client 75.187.105.186]  at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/WebApp.pm line 14
+[Sun Aug 09 16:26:14 2009] [error] [client 75.187.105.186] \tWebApp::template('WebApp=HASH(0x84cf2e0)') called at /home/tbrannon/prg/perl-module-cgi-prototype/lib/CGI/Prototype/Moose.pm line 120
+[Sun Aug 09 16:26:14 2009] [error] [client 75.187.105.186] \tCGI::Prototype::Moose::render('WebApp=HASH(0x84cf2e0)') called at /home/tbrannon/prg/perl-module-cgi-prototype/lib/CGI/Prototype/Moose.pm line 85
+[Sun Aug 09 16:26:14 2009] [error] [client 75.187.105.186] \tCGI::Prototype::Moose::activate('WebApp=HASH(0x84cf2e0)') called at /usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi/Class/MOP/Method/Wrapped.pm line 33
+[Sun Aug 09 16:26:14 2009] [error] [client 75.187.105.186] \tClass::MOP::Method::Wrapped::__ANON__('WebApp=HASH(0x84cf2e0)') called at /usr/lib/perl5/site_perl/5.8.8/i386-linux-thread-multi/Class/MOP/Method/Wrapped.pm line 89
+[Sun Aug 09 16:26:14 2009] [error] [client 75.187.105.186] \tCGI::Prototype::Moose::activate('WebApp=HASH(0x84cf2e0)') called at /home/tbrannon/prg/perl-module-cgi-prototype/etc/simple/cgi-bin/webapp.cgi line 13
+[Sun Aug 09 16:26:14 2009] [error] [client 75.187.105.186] Premature end of script headers: webapp.cgi

@@ -578,15 +578,22 @@ sub respond {
 L<Class::Prototyped>, L<Template::Manual>,
 L<http://www.stonehenge.com/merlyn/LinuxMag/col56.html>.
 
-=head1 SUPPORT, MAILING LIST, SOURCE REPO
+=head1 SUPPORT
 
-The mailing list for CGI::Prototype is archived at
-L<http://www.mail-archive.com/cgi-prototype-users@lists.sourceforge.net/index.html>
+=head2 Mailing List
 
 You may sign up here
 L<https://lists.sourceforge.net/lists/listinfo/cgi-prototype-users>
 
-for general discussion or bug reports.
+=head3 Archive
+
+The mailing list for CGI::Prototype is archived at
+L<http://www.mail-archive.com/cgi-prototype-users@lists.sourceforge.net/index.html>
+
+=head2 IRC
+
+L<irc://irc.perl.org/moose> is where Terrence Brannon (metaperl) is. Randal (merlyn) 
+can sometimes be found there too.
 
 =head2 Source repo
 
