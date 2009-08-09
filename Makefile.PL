@@ -17,6 +17,10 @@ WriteMakefile
    },
    ($] >= 5.005 ?
     (
-     AUTHOR         => 'Randal L. Schwartz <merlyn@stonehenge.com>') : ()),
+     AUTHOR         => 'Randal L. Schwartz <merlyn@stonehenge.com>') : ()
+   ),
+
+   test => {TESTS => 't/*.t t/*/*.t t/*/*/*.t'}
+
   );
 

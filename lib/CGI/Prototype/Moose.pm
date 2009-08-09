@@ -88,11 +88,11 @@ sub activate {
   $self->error($@) if $@;	# failed something, go to safe mode
 }
 
-# sub display {			# override this to grab output for testing
-#   my $self = shift;
-#   my $output = shift;
-#   print $output;
-# }
+sub display {		    # override this to grab output for testing
+    my $self = shift;
+    my $output = shift;
+    print $output;
+}
 
 =for later
 

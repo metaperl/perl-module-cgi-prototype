@@ -281,6 +281,13 @@ highly insecure and should be overridden, perhaps with something that
 logs the error and puts up a generic error message with an incident
 code for tracking.
 
+=head3 C<display>
+
+This routine simply prints to STDOUT. It is used by L</error> to print
+output when the standard L</activate> procedure is interrupted with an
+exception.
+
+
 =head2 C<param> (lazy)
 
 The C<param> method is a convenience method that maps to

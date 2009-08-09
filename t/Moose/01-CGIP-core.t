@@ -2,17 +2,14 @@
 use Test::More no_plan;
 
 my @core_slots = qw(request response log output CGI activate app_enter app_leave control_enter
-	       control_leave dispatch display engine error param
+	       control_leave dispatch engine error param
 	       render render_enter render_leave respond respond_enter
 	       respond_leave template);
 
 require_ok 'CGI::Prototype::Moose';
 isa_ok my $m = CGI::Prototype::Moose->new, 'CGI::Prototype::Moose';
-isa_ok $m, 'CGI::Prototype:Moose';
+isa_ok $m, 'CGI::Prototype::Moose';
 can_ok $m, @core_slots;
-
-eval { $m->object->CGI };
-like $@, qr/initialize_CGI not called/, 'CGI slot properly annoyed';
 
 ## now make sure the same thing is true for a derived app:
 
@@ -25,8 +22,6 @@ isa_ok $m = My::App->new, 'CGI::Prototype::Moose';
 isa_ok $m, 'My::App';
 can_ok $m, @core_slots;
 
-eval { $m->CGI };
-like $@, qr/initialize_CGI not called/, 'CGI slot properly annoyed';
 
 {
   open my $stdout, ">&STDOUT" or die;
@@ -40,6 +35,6 @@ open IN, 'test.out' or die;
 like join("", <IN>), qr/This page intentionally left blank/ms,
   'proper output from null app';
 
-is_deeply [$m->CGI->params], [],
+is_deeply [$m->CGI->param], [],
   'verify no params';
 
