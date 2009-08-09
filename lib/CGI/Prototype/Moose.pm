@@ -144,7 +144,7 @@ sub prototype_leave {
 sub _open_timer {
     my($self)=@_;
 
-    warn "ARGS: @_";
+    Carp::cluck "ARGS: @_";
 
     require Time::HiRes;
     $self->session_start_time ( [Time::HiRes::gettimeofday()] ) ;
