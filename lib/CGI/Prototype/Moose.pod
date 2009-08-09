@@ -309,7 +309,7 @@ L<http://www.mail-archive.com/cgi-prototype-users@lists.sourceforge.net/index.ht
 =head2 Source repo
 
 Randal Schwartz maintains the source repo on github:
-http://github.com/RandalSchwartz/perl-module-cgi-prototype/tree/master
+L<http://github.com/RandalSchwartz/perl-module-cgi-prototype/tree/master>
 
 Terrence Brannon has forked Randal's repo for the Moose implementation:
 L<http://github.com/metaperl/perl-module-cgi-prototype/tree/master>
