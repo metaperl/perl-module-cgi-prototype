@@ -220,28 +220,6 @@ Called when a page loses control specifically for rendering
 (understanding the incoming parameters, and deciding what page should
 render the response), just before C<control_leave> (if needed).
 
-=head3 C<control_leave>
-
-Called when a page loses control, either after a response phase
-because we're switching to a new page, or render phase after we've
-delivered the new text to the browser.
-
-This is a great place to hang per-page teardown, because you'll get
-this callback at most once per hit.
-
-=head3 C<app_leave>
-
-Called when the application is left, at the very end of each hit.
-Defaults to no action.
-
-=head3 C<prototype_leave>
-
-Called when the prototype mechanism is exited, at the very end of each hit.
-
-It binds L</output> to C<< $self->response->body >> and then prints
-it to STDOUT.
-
-
 =head3 C<render_enter>
 
 Called when a page gains control specifically for rendering, just
@@ -272,15 +250,27 @@ Called when a page loses control specifically for rendering (delivering
 text to the browser), just before C<control_leave>.
 
 
-=head2 C<param> (lazy)
 
-The C<param> method is a convenience method that maps to
-C<< $self->CGI->param >>, because accessing params is a very common thing.
+=head3 C<control_leave>
 
+Called when a page loses control, either after a response phase
+because we're switching to a new page, or render phase after we've
+delivered the new text to the browser.
 
+This is a great place to hang per-page teardown, because you'll get
+this callback at most once per hit.
 
+=head3 C<app_leave>
 
+Called when the application is left, at the very end of each hit.
+Defaults to no action.
 
+=head3 C<prototype_leave>
+
+Called when the prototype mechanism is exited, at the very end of each hit.
+
+It binds L</output> to C<< $self->response->body >> and then prints
+it to STDOUT.
 
 =head2 C<error>
 
@@ -291,7 +281,10 @@ highly insecure and should be overridden, perhaps with something that
 logs the error and puts up a generic error message with an incident
 code for tracking.
 
+=head2 C<param> (lazy)
 
+The C<param> method is a convenience method that maps to
+C<< $self->CGI->param >>, because accessing params is a very common thing.
 
 =head1 SUPPORT
 
